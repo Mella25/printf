@@ -6,6 +6,10 @@
  * @i: Pointer to the current index in the format string.
  * @list: The va_list of arguments.
  *
+ * The do-while loop ensures that the loop will terminate even if the format
+ * string does not contain any digits. The break statement is used to break out
+ * of the loop when a non-digit character is encountered.
+ *
  * Return: The precision value.
  */
 int get_precision(const char *format, int *i, va_list list)
@@ -19,8 +23,7 @@ int get_precision(const char *format, int *i, va_list list)
 	precision = 0;
 	curr_i++;
 
-	while (format[curr_i] != '\0')
-	{
+	do {
 		if (is_digit(format[curr_i]))
 		{
 			precision = precision * 10 + (format[curr_i] - '0');
@@ -34,7 +37,7 @@ int get_precision(const char *format, int *i, va_list list)
 		}
 		else
 			break;
-	}
+	} while (format[curr_i] != '\0');
 
 	*i = curr_i - 1;
 
