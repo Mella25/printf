@@ -1,16 +1,12 @@
 #include "main.h"
 
 /**
- * get_precision - Calculates the precision for printing
- * @format: The format string.
+ * get_precision - Parses the format string to extract the precision for printing.
+ * @format: Formatted string containing the format specifier.
  * @i: Pointer to the current index in the format string.
- * @list: The va_list of arguments.
+ * @list: Variable argument list.
  *
- * The do-while loop ensures that the loop will terminate even if the format
- * string does not contain any digits. The break statement is used to break out
- * of the loop when a non-digit character is encountered.
- *
- * Return: The precision value.
+ * Return: The precision specified in the format string, or -1 if not found.
  */
 int get_precision(const char *format, int *i, va_list list)
 {
@@ -18,28 +14,28 @@ int get_precision(const char *format, int *i, va_list list)
 	int precision = -1;
 
 	if (format[curr_i] != '.')
-		return (precision);
+		return precision;
 
 	precision = 0;
-	curr_i++;
 
-	do {
+	for (curr_i += 1; format[curr_i] != '\0'; curr_i++)
+	{
 		if (is_digit(format[curr_i]))
 		{
-			precision = precision * 10 + (format[curr_i] - '0');
-			curr_i++;
+			precision *= 10;
+			precision += format[curr_i] - '0';
 		}
 		else if (format[curr_i] == '*')
 		{
-			precision = va_arg(list, int);
 			curr_i++;
+			precision = va_arg(list, int);
 			break;
 		}
 		else
 			break;
-	} while (format[curr_i] != '\0');
+	}
 
 	*i = curr_i - 1;
 
-	return (precision);
+	return precision;
 }
