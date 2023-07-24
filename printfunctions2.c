@@ -10,7 +10,7 @@
  * Return: Number of chars printed
  */
 int write_pointer(char buffer[], int ind, int length, int width,
-                  int flags, char padd, char extra_c);
+                  int flags, char padd, char extra_c)
 {
 	char extra_c = 0, padd = ' ';
 	int ind = BUFF_SIZE - 2, length = 2, padd_start = 1; /* length=2, for '0x' */
