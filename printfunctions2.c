@@ -1,25 +1,8 @@
 #include "main.h"
-<<<<<<< HEAD
-#include <stdarg.h>
-/**
- * write_pointer - Prints the value of a pointer variable.
- * @buffer: Buffer array to handle print.
- * @ind: Index in buffer.
- * @length: Length of the output.
- * @width: Width of the output.
- * @flags: Calculates flags.
- * @padd: Padding character.
- * @extra_c: Extra character.
- * Return: Number of characters printed.
- */
-int write_pointer(char buffer[], int ind, int length, int width,
-	int flags, char padd, char extra_c)
-=======
 
-/****************** PRINT POINTER ******************/
+/****** PRINT POINTER ******/
 int print_pointer(va_list args, char buffer[],
                   int flags, int width, int precision, int size)
->>>>>>> 8f37152 (Final product)
 {
     char padding_char = 0, padding = ' ';
     int index = BUFF_SIZE - 2, length = 2, start_padding = 1;
@@ -58,24 +41,9 @@ int print_pointer(va_list args, char buffer[],
                           width, flags, padding, padding_char, start_padding));
 }
 
-<<<<<<< HEAD
-/**
- * print_non_printable - Prints ASCII codes in hex of non-printable characters.
- * @types: List of arguments.
- * @buffer: Buffer array to handle print.
- * @flags: Calculates flags.
- * @width: Width.
- * @precision: Precision specification.
- * @size: Size specification.
- * Return: Number of characters printed.
- */
-int print_non_printable(va_list types, char buffer[],
-			int flags, int width, int precision, int size)
-=======
-/************************* PRINT NON PRINTABLE *************************/
+/********* PRINT NON PRINTABLE *********/
 int print_non_printable(va_list args, char buffer[],
                         int flags, int width, int precision, int size)
->>>>>>> 8f37152 (Final product)
 {
     int i = 0, offset = 0;
     char *str = va_arg(args, char *);
@@ -103,24 +71,9 @@ int print_non_printable(va_list args, char buffer[],
     return (write(1, buffer, i + offset));
 }
 
-<<<<<<< HEAD
-/**
- * print_reverse - Prints a string in reverse.
- * @types: List of arguments.
- * @buffer: Buffer array to handle print.
- * @flags: Calculates flags.
- * @width: Width.
- * @precision: Precision specification.
- * @size: Size specification.
- * Return: Numbers of characters printed.
- */
-int print_reverse(va_list types, char buffer[],
-		int flags, int width, int precision, int size)
-=======
-/************************* PRINT REVERSE *************************/
+/********* PRINT REVERSE *********/
 int print_reverse(va_list args, char buffer[],
                   int flags, int width, int precision, int size)
->>>>>>> 8f37152 (Final product)
 {
     char *str;
     int i, count = 0;
@@ -132,39 +85,6 @@ int print_reverse(va_list args, char buffer[],
 
     str = va_arg(args, char *);
 
-<<<<<<< HEAD
-	if (str == NULL)
-	{
-		UNUSED(precision);
-		str = ")Null(";
-	}
-
-	for (i = 0; str[i]; i++)
-		;
-
-	for (i = i - 1; i >= 0; i--)
-	{
-		char z = str[i];
-		write(1, &z, 1);
-
-		count++;
-	}
-	return (count);
-}
-
-/**
- * print_rot13string - Print a string in rot13.
- * @types: List of arguments.
- * @buffer: Buffer array to handle print.
- * @flags: Calculates flags.
- * @width: Width.
- * @precision: Precision specification.
- * @size: Size specification.
- * Return: Numbers of characters printed.
- */
-int print_rot13string(va_list types, char buffer[], int flags,
-		      int width, int precision, int size)
-=======
     if (str == NULL)
     {
         UNUSED(precision);
@@ -184,10 +104,9 @@ int print_rot13string(va_list types, char buffer[], int flags,
     return (count);
 }
 
-/************************* PRINT A STRING IN ROT13 *************************/
+/********* PRINT A STRING IN ROT13 *********/
 int print_rot13string(va_list args, char buffer[],
                       int flags, int width, int precision, int size)
->>>>>>> 8f37152 (Final product)
 {
     char ch;
     char *str;
@@ -198,33 +117,6 @@ int print_rot13string(va_list args, char buffer[],
 
     str = va_arg(args, char *);
 
-<<<<<<< HEAD
-	if (str == NULL)
-		str = "(AHYY)";
-
-	for (i = 0; str[i]; i++)
-	{
-		for (j = 0; in[j]; j++)
-		{
-			if (in[j] == str[i])
-			{
-				x = out[j];
-				write(1, &x, 1);
-				count++;
-				break;
-			}
-		}
-
-		if (!in[j])
-		{
-			x = str[i];
-			write(1, &x, 1);
-			count++;
-		}
-	}
-
-	return (count);
-=======
     UNUSED(buffer);
     UNUSED(flags);
     UNUSED(width);
@@ -256,5 +148,4 @@ int print_rot13string(va_list args, char buffer[],
     }
 
     return (count);
->>>>>>> 8f37152 (Final product)
 }
