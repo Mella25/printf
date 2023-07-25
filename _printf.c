@@ -2,6 +2,7 @@
 
 /* Function prototypes */
 void print_buffer(char buffer[], int *buff_ind);
+void print_humorous_message(void); /*New function for %r format*/
 
 /**
  * _printf - Custom printf function
@@ -71,4 +72,15 @@ void print_buffer(char buffer[], int *buff_ind)
 	}
 
 	*buff_ind = 0;
+}
+
+/**
+ * print_humorous_message - Prints a humorous message for %r format specifier.
+ * You can customize the message as you like.
+ */
+void print_humorous_message(void)
+{
+    char message[] = "Whoa! You found a mysterious format specifier (%r). "
+                     "I'm just a simple printf function, not a magician! 😄";
+    write(1, message, sizeof(message) - 1);
 }
