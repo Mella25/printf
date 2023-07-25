@@ -17,6 +17,7 @@ int get_flags(const char *format, int *i)
 	for (curr_i = *i + 1; format[curr_i] != '\0'; curr_i++)
 	{
 		int j;
+
 		for (j = 0; FLAGS_CH[j] != '\0'; j++)
 		{
 			if (format[curr_i] == FLAGS_CH[j])
@@ -32,5 +33,5 @@ int get_flags(const char *format, int *i)
 
 	*i = curr_i - 1;
 
-	return flags;
+	return (flags);
 }

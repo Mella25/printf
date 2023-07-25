@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * get_precision - Parses the format string to extract the precision for printing.
+ * get_precision - Parses the format string to extract the precision 4 printing
  * @format: Formatted string containing the format specifier.
  * @i: Pointer to the current index in the format string.
  * @list: Variable argument list.
@@ -14,7 +14,7 @@ int get_precision(const char *format, int *i, va_list list)
 	int precision = -1;
 
 	if (format[curr_i] != '.')
-		return precision;
+		return (precision);
 
 	precision = 0;
 
@@ -37,5 +37,5 @@ int get_precision(const char *format, int *i, va_list list)
 
 	*i = curr_i - 1;
 
-	return precision;
+	return (precision);
 }
