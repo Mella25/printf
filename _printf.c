@@ -2,7 +2,7 @@
 
 /* Function prototypes */
 void print_buffer(char buffer[], int *buff_ind);
-void print_humorous_message(void); /*New function for %r format*/
+void print_humorous_message(void); /* New function for %r format */
 
 /**
  * _printf - Custom printf function
@@ -41,14 +41,21 @@ int _printf(const char *format, ...)
 			precision = get_precision(format, &i, list);
 			size = get_size(format, &i);
 			++i;
-			printed = handle_print(format, &i, list, buffer,
-					       flags, width, precision, size);
-			if (printed == -1)
+			if (format[i] == 'r') /* Check for %r format */
 			{
-				va_end(list);
-				return (-1);
+				print_humorous_message(); /* Call the function to print humorous message */
 			}
-			printed_chars += printed;
+			else
+			{
+				printed = handle_print(format, &i, list, buffer,
+					flags, width, precision, size);
+				if (printed == -1)
+				{
+					va_end(list);
+					return (-1);
+				}
+				printed_chars += printed;
+			}
 		}
 	}
 
@@ -80,7 +87,8 @@ void print_buffer(char buffer[], int *buff_ind)
  */
 void print_humorous_message(void)
 {
-    char message[] = "Whoa! You found a mysterious format specifier (%r). "
-                     "I'm just a simple printf function, not a magician! 😄";
-    write(1, message, sizeof(message) - 1);
+	char message[] = "Whoa! You found a mysterious format specifier (%r). "
+			"I'm just a simple printf function, not a magician! 😄";
+	write(1, message, sizeof(message) - 1);
 }
+
