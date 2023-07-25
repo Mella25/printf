@@ -1,17 +1,18 @@
 #include "main.h"
-
+#include <stdarg.h>
 /**
- * write_pointer - Prints the value of a pointer variable
- * @buffer: Buffer array to handle print
- * @ind: Index in buffer
- * @length: Length of the output
- * @flags: Calculates flags
- * @padd: Padding character
- * @extra_c: Extra character
- * Return: Number of chars printed
+ * write_pointer - Prints the value of a pointer variable.
+ * @buffer: Buffer array to handle print.
+ * @ind: Index in buffer.
+ * @length: Length of the output.
+ * @width: Width of the output.
+ * @flags: Calculates flags.
+ * @padd: Padding character.
+ * @extra_c: Extra character.
+ * Return: Number of characters printed.
  */
 int write_pointer(char buffer[], int ind, int length, int width,
-                  int flags, char padd, char extra_c)
+	int flags, char padd, char extra_c)
 {
 	char map_to[] = "0123456789abcdef";
 	unsigned long num_addrs;
@@ -47,14 +48,14 @@ int write_pointer(char buffer[], int ind, int length, int width,
 }
 
 /**
- * print_non_printable - Prints ascii codes in hexa of non printable chars
- * @types: List of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates flags
- * @width: Width
- * @precision: Precision specification
- * @size: Size specification
- * Return: Number of characters printed
+ * print_non_printable - Prints ASCII codes in hex of non-printable characters.
+ * @types: List of arguments.
+ * @buffer: Buffer array to handle print.
+ * @flags: Calculates flags.
+ * @width: Width.
+ * @precision: Precision specification.
+ * @size: Size specification.
+ * Return: Number of characters printed.
  */
 int print_non_printable(va_list types, char buffer[],
 			int flags, int width, int precision, int size)
@@ -86,14 +87,14 @@ int print_non_printable(va_list types, char buffer[],
 }
 
 /**
- * print_reverse - Prints reverse string.
- * @types: List of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates flags
- * @width: Width
- * @precision: Precision specification
- * @size: Size specification
- * Return: Numbers of characters printed
+ * print_reverse - Prints a string in reverse.
+ * @types: List of arguments.
+ * @buffer: Buffer array to handle print.
+ * @flags: Calculates flags.
+ * @width: Width.
+ * @precision: Precision specification.
+ * @size: Size specification.
+ * Return: Numbers of characters printed.
  */
 int print_reverse(va_list types, char buffer[],
 		int flags, int width, int precision, int size)
@@ -111,32 +112,34 @@ int print_reverse(va_list types, char buffer[],
 	if (str == NULL)
 	{
 		UNUSED(precision);
-
 		str = ")Null(";
 	}
-	for (i = 0; str[i]; i++)
-		for (i = i - 1; i >= 0; i--)
-		{
-			char z = str[i];
 
-			write(1, &z, 1);
-			count++;
-		}
+	for (i = 0; str[i]; i++)
+		;
+
+	for (i = i - 1; i >= 0; i--)
+	{
+		char z = str[i];
+		write(1, &z, 1);
+
+		count++;
+	}
 	return (count);
 }
 
 /**
  * print_rot13string - Print a string in rot13.
- * @types: List of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates flags
- * @width: Width
- * @precision: Precision specification
- * @size: Size specification
- * Return: Numbers of characters printed
+ * @types: List of arguments.
+ * @buffer: Buffer array to handle print.
+ * @flags: Calculates flags.
+ * @width: Width.
+ * @precision: Precision specification.
+ * @size: Size specification.
+ * Return: Numbers of characters printed.
  */
-int print_rot13string(va_list types, char buffer[],
-		      int flags, int width, int precision, int size)
+int print_rot13string(va_list types, char buffer[], int flags,
+		      int width, int precision, int size)
 {
 	char x;
 	char *str;
@@ -154,6 +157,7 @@ int print_rot13string(va_list types, char buffer[],
 
 	if (str == NULL)
 		str = "(AHYY)";
+
 	for (i = 0; str[i]; i++)
 	{
 		for (j = 0; in[j]; j++)
@@ -166,6 +170,7 @@ int print_rot13string(va_list types, char buffer[],
 				break;
 			}
 		}
+
 		if (!in[j])
 		{
 			x = str[i];
@@ -173,5 +178,6 @@ int print_rot13string(va_list types, char buffer[],
 			count++;
 		}
 	}
+
 	return (count);
 }
